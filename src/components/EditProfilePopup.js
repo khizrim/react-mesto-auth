@@ -1,0 +1,80 @@
+import { useContext, useEffect } from 'react';
+import CurrentUserContext from '../contexts/CurrentUserContext';
+import useForm from '../hooks/useForm';
+import PopupWithForm from './PopupWithForm';
+
+function EditProfilePopup(props) {
+  const currentUser = useContext(CurrentUserContext);
+
+  const {
+    handleChange,
+    validateInput,
+    validateForm,
+    setValues,
+    reset,
+    values,
+    errors,
+    formValidity,
+  } = useForm();
+
+  useEffect(() => {
+    setValues(currentUser)
+  }, [currentUser, setValues]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.onUpdateUser(values, reset);
+  }
+
+  return (
+    <PopupWithForm
+      name='edit-profile'
+      title='Редактировать профиль'
+      submitBtn={props.submitBtn || 'Сохранить'}
+      isOpen={props.isOpen}
+      isValid={formValidity}
+      onChange={validateForm}
+      onSubmit={handleSubmit}
+      onClose={props.onClose}
+    >
+      <>
+        <input
+          id='user-name'
+          type='text'
+          name='name'
+          value={values.name || ''}
+          onInput={validateInput}
+          onChange={handleChange}
+          placeholder='Ваше имя'
+          autoComplete='name'
+          className={`popup__input ${errors.name ? 'popup__input_type_error' : ''}`}
+          minLength='2'
+          maxLength='40'
+          required
+        />
+        {errors.name && (
+          <span className='popup__input-error popup__input-error_active'>{errors.name}</span>
+        )}
+        <input
+          id='user-about'
+          type='text'
+          name='about'
+          value={values.about || ''}
+          onInput={validateInput}
+          onChange={handleChange}
+          placeholder='Чем вы занимаетесь?'
+          autoComplete='off'
+          className={`popup__input ${errors.about ? 'popup__input_type_error' : ''}`}
+          minLength='2'
+          maxLength='200'
+          required
+        />
+        {errors.about && (
+          <span className='popup__input-error popup__input-error_active'>{errors.about}</span>
+        )}
+        </>
+    </PopupWithForm>
+  );
+}
+
+export default EditProfilePopup;
