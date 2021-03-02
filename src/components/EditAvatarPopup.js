@@ -37,11 +37,11 @@ function EditAvatarPopup(props) {
           onInput={validateInput}
           onChange={handleChange}
           placeholder='Ссылка на аватарку'
-          className={`popup__input ${errors.link ? 'popup__input_type_error' : ''}`}
+          className={`form__input ${errors.link ? 'form__input_type_error' : ''}`}
           required
         />
         {errors.link && (
-          <span className='popup__input-error popup__input-error_active'>{errors.link}</span>
+          <span className='form__input-error form__input-error_active'>{errors.link}</span>
         )}
       </>
     </PopupWithForm>

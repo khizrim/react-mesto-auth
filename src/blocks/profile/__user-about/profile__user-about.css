@@ -21,7 +21,6 @@
 @media only screen and (max-width: 619px) {
   .profile__user-about {
     max-width: 220px;
-    z-index: -1;
     font-size: 14px;
     line-height: 17px;
     transform: translate(0, -5px);

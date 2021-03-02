@@ -37,13 +37,13 @@ function AddPlacePopup(props) {
           value={values.name || ''}
           onInput={validateInput}
           onChange={handleChange}
-          className={`popup__input ${errors.name ? 'popup__input_type_error' : ''}`}
+          className={`form__input ${errors.name ? 'form__input_type_error' : ''}`}
           minLength='2'
           maxLength='30'
           required
         />
         {errors.name && (
-          <span className='popup__input-error popup__input-error_active'>
+          <span className='form__input-error form__input-error_active'>
             {errors.name}
           </span>
         )}
@@ -55,11 +55,11 @@ function AddPlacePopup(props) {
           value={values.link || ''}
           onInput={validateInput}
           onChange={handleChange}
-          className={`popup__input ${errors.link ? 'popup__input_type_error' : ''}`}
+          className={`form__input ${errors.link ? 'form__input_type_error' : ''}`}
           required
         />
         {errors.link && (
-          <span className='popup__input-error popup__input-error_active'>
+          <span className='form__input-error form__input-error_active'>
             {errors.link}
           </span>
         )}

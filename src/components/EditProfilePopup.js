@@ -47,13 +47,13 @@ function EditProfilePopup(props) {
           onChange={handleChange}
           placeholder='Ваше имя'
           autoComplete='name'
-          className={`popup__input ${errors.name ? 'popup__input_type_error' : ''}`}
+          className={`form__input ${errors.name ? 'form__input_type_error' : ''}`}
           minLength='2'
           maxLength='40'
           required
         />
         {errors.name && (
-          <span className='popup__input-error popup__input-error_active'>{errors.name}</span>
+          <span className='form__input-error form__input-error_active'>{errors.name}</span>
         )}
         <input
           id='user-about'
@@ -64,13 +64,13 @@ function EditProfilePopup(props) {
           onChange={handleChange}
           placeholder='Чем вы занимаетесь?'
           autoComplete='off'
-          className={`popup__input ${errors.about ? 'popup__input_type_error' : ''}`}
+          className={`form__input ${errors.about ? 'form__input_type_error' : ''}`}
           minLength='2'
           maxLength='200'
           required
         />
         {errors.about && (
-          <span className='popup__input-error popup__input-error_active'>{errors.about}</span>
+          <span className='form__input-error form__input-error_active'>{errors.about}</span>
         )}
         </>
     </PopupWithForm>

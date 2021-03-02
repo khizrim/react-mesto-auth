@@ -36,18 +36,23 @@
 @import url('./blocks/footer/footer.css');
 @import url('./blocks/footer/__copyright/footer__copyright.css');
 
-/* Общие стили попапов */
+/* Cтили попапов */
 @import url('./blocks/popup/popup.css');
 @import url('./blocks/popup/_opened/popup_opened.css');
 @import url('./blocks/popup/__container/popup__container.css');
-@import url('./blocks/popup/__title/popup__title.css');
-@import url('./blocks/popup/__input/popup__input.css');
-@import url('./blocks/popup/__input-error/popup__input-error.css');
-@import url('./blocks/popup/__input-error/_active/popup__input-error_active.css');
-@import url('./blocks/popup/__input/_type/popup__input_type_error.css');
 @import url('./blocks/popup/__close-btn/popup__close-btn.css');
-@import url('./blocks/popup/__submit-btn/popup__submit-btn.css');
-@import url('./blocks/popup/__submit-btn/_disabled/popup__submit-btn_disabled.css');
+
+/* Стили форм */
+@import url('./blocks/form/form.css');
+@import url('./blocks/form/__container/form__container.css');
+@import url('./blocks/form/__title/form__title.css');
+@import url('./blocks/form/__input/form__input.css');
+@import url('./blocks/form/__input/_type/form__input_type_error.css');
+@import url('./blocks/form/__input-error/form__input-error.css');
+@import url('./blocks/form/__input-error/_active/form__input-error_active.css');
+@import url('./blocks/form/__submit-btn/form__submit-btn.css');
+@import url('./blocks/form/__submit-btn/_disabled/form__submit-btn_disabled.css');
+@import url('./blocks/form/__caption/form__caption.css');
 
 /* Попап просмотра фотографии */
 @import url('./blocks/popup/_type/_image-vwr/popup_type_image-vwr.css');
