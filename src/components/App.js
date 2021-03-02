@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import api from '../utils/api';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import Header from './Header';
@@ -9,6 +10,9 @@ import EditProfilePopup from './EditProfilePopup';
 import AddPlacePopup from './AddPlacePopup';
 import ImagePopup from './ImagePopup';
 import ConfirmationPopup from './ConfirmationPopup';
+import Register from './Register';
+import Login from './Login';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -32,7 +36,7 @@ function App() {
     ) {
       setNoScroll(true);
     } else {
-      setNoScroll(false)
+      setNoScroll(false);
     }
   }, [
     noScroll,
@@ -183,53 +187,62 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className={`page ${noScroll ? 'page_no-scroll' : ''}`}>
-        <div className='page__container'>
-          <Header
-            userEmail={''}
-            isLoggedIn={''}
-            onSignOut={''}
-          />
-          <Main
-            cards={cards}
-            onEditAvatar={handleEditAvatarClick}
-            onEditProfile={handleEditProfileClick}
-            onAddPlace={handleAddPlaceClick}
-            onCardClick={handleCardClick}
-            onCardLike={handleCardLike}
-            onCardDelete={handleDeleteClick}
-          ></Main>
-          <Footer />
-          <EditAvatarPopup
-            isOpen={isEditAvatarPopupOpen}
-            submitBtn={buttonState}
-            onUpdateAvatar={handleUpdateAvatar}
-            onClose={closeAllPopups}
-          />
-          <EditProfilePopup
-            isOpen={isEditProfilePopupOpen}
-            submitBtn={buttonState}
-            onUpdateUser={handleUpdateUser}
-            onClose={closeAllPopups}
-          />
-          <AddPlacePopup
-            isOpen={isAddPlacePopupOpen}
-            submitBtn={buttonState}
-            onAddPlace={handleAddPlace}
-            onClose={closeAllPopups}
-          />
-          <ImagePopup
-            isOpen={isImageViewerPopupOpen}
-            name='image-vwr'
-            card={selectedCard}
-            onClose={closeAllPopups}
-          />
-          <ConfirmationPopup
-            isOpen={isConfirmationPopupOpen}
-            card={selectedCard}
-            submitBtn={buttonState}
-            onCardDelete={handleCardDelete}
-            onClose={closeAllPopups}
-          />
+        <div className="page__container">
+          <Header userEmail={''} isLoggedIn={''} onSignOut={''} />
+          <Switch>
+            <Route path="/sign-up">
+              <Register />
+            </Route>
+            <Route path="/sign-in">
+              <Login />
+            </Route>
+            <ProtectedRoute
+              path="/"
+              isLoggedIn={false}
+              component={Main}
+              cards={cards}
+              onEditAvatar={handleEditAvatarClick}
+              onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike}
+              onCardDelete={handleDeleteClick}
+            />
+          </Switch>
+          <Route exact path="/">
+            <Footer />
+            <EditAvatarPopup
+              isOpen={isEditAvatarPopupOpen}
+              submitBtn={buttonState}
+              onUpdateAvatar={handleUpdateAvatar}
+              onClose={closeAllPopups}
+            />
+            <EditProfilePopup
+              isOpen={isEditProfilePopupOpen}
+              submitBtn={buttonState}
+              onUpdateUser={handleUpdateUser}
+              onClose={closeAllPopups}
+            />
+            <AddPlacePopup
+              isOpen={isAddPlacePopupOpen}
+              submitBtn={buttonState}
+              onAddPlace={handleAddPlace}
+              onClose={closeAllPopups}
+            />
+            <ImagePopup
+              isOpen={isImageViewerPopupOpen}
+              name="image-vwr"
+              card={selectedCard}
+              onClose={closeAllPopups}
+            />
+            <ConfirmationPopup
+              isOpen={isConfirmationPopupOpen}
+              card={selectedCard}
+              submitBtn={buttonState}
+              onCardDelete={handleCardDelete}
+              onClose={closeAllPopups}
+            />
+          </Route>
         </div>
       </div>
     </CurrentUserContext.Provider>

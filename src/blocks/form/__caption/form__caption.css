@@ -1,4 +1,4 @@
-.auth-form__caption {
+.form__caption {
   cursor: pointer;
   color: inherit;
   text-decoration: none;
@@ -12,6 +12,6 @@
   -o-transition: opacity 0.2s ease-in-out;
 }
 
-.auth-form__caption:hover {
+.form__caption:hover {
   opacity: 0.6;
 }
