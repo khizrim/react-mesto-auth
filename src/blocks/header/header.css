@@ -1,13 +1,6 @@
 .header {
   display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
   padding-top: 45px;
-}
-
-.header::after {
-  content: "";
-  align-self: center;
   width: 100%;
   border-bottom: 1px solid #545454;
 }
@@ -15,10 +8,5 @@
 @media only screen and (max-width: 619px) {
   .header {
     padding-top: 28px;
-  }
-
-  .header::after {
-    width: calc(100% + 38px);
-    min-width: 320px;
   }
 }

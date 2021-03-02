@@ -1,7 +1,9 @@
-.header__link {
-  width: 100%;
-  margin-bottom: 40px;
-  cursor: pointer;
+.header__menu-link {
+  font-size: 18px;
+  line-height: 22px;
+  text-align: right;
+  text-decoration: none;
+  color: #fff;
   transition: opacity 0.2s ease-in-out;
   -webkit-transition: opacity 0.2s ease-in-out;
   -moz-transition: opacity 0.2s ease-in-out;
@@ -9,12 +11,6 @@
   -o-transition: opacity 0.2s ease-in-out;
 }
 
-.header__link:hover {
+.header__menu-link:hover {
   opacity: 0.6;
-}
-
-@media only screen and (max-width: 619px) {
-  .header__link {
-    margin-bottom: 32px;
-  }
 }

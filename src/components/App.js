@@ -184,7 +184,11 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className={`page ${noScroll ? 'page_no-scroll' : ''}`}>
         <div className='page__container'>
-          <Header />
+          <Header
+            userEmail={''}
+            isLoggedIn={''}
+            onSignOut={''}
+          />
           <Main
             cards={cards}
             onEditAvatar={handleEditAvatarClick}
