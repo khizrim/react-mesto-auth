@@ -7,7 +7,6 @@
 }
 
 .header::after {
-  flex-basis: 100%;
   margin-top: 40px;
   content: "";
   align-self: center;
@@ -21,7 +20,6 @@
   }
 
   .header::after {
-    width: calc(100% + 38px);
     margin-top: 32px;
     min-width: 320px;
   }

@@ -1,0 +1,5 @@
+@media only screen and (max-width: 619px) {
+  .header__menu-links_visible {
+    display: flex;
+  }
+}
