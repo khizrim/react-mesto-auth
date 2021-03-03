@@ -4,6 +4,7 @@
   text-align: right;
   text-decoration: none;
   color: #fff;
+  cursor: pointer;
   transition: opacity 0.2s ease-in-out;
   -webkit-transition: opacity 0.2s ease-in-out;
   -moz-transition: opacity 0.2s ease-in-out;

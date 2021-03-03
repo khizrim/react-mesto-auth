@@ -1,6 +1,5 @@
 .header__link {
-  width: 100%;
-  margin-bottom: 40px;
+  width: 142px;
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
   -webkit-transition: opacity 0.2s ease-in-out;
@@ -11,10 +10,4 @@
 
 .header__link:hover {
   opacity: 0.6;
-}
-
-@media only screen and (max-width: 619px) {
-  .header__link {
-    margin-bottom: 32px;
-  }
 }

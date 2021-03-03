@@ -1,11 +1,4 @@
 .header__menu {
   display: flex;
   align-items: center;
-  margin-bottom: 40px;
-}
-
-@media only screen and (max-width: 619px) {
-  .header__menu {
-    margin-bottom: 32px;
-  }
 }
