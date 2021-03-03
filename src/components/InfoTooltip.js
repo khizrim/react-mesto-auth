@@ -13,15 +13,15 @@ function InfoTooltip(props) {
       className={`popup popup_type_auth-status ${props.isOpen ? 'popup_opened' : '' }`}
       onClick={handleOverlayClose}
     >
-      <div className="popup__container">
+      <div className="popup__container popup__container_wide">
         <button
           type="reset"
           aria-label="Закрыть"
-          className="popup__close-btn"
+          className="popup__close-btn popup__close-btn_centered"
           onClick={props.onClose}
         />
         <img className="popup__auth-status-icon" src={props.status ? successIcon : failureIcon} alt='' />
-        <h3 className="popup__title">{props.status ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте ещё раз.'}</h3>
+        <h3 className="popup__message">{props.status ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте ещё раз.'}</h3>
       </div>
     </div>
   );

@@ -53,6 +53,7 @@
 @import url('./blocks/popup/popup.css');
 @import url('./blocks/popup/_opened/popup_opened.css');
 @import url('./blocks/popup/__container/popup__container.css');
+@import url('./blocks/popup/__container/_wide/popup__container_wide.css');
 @import url('./blocks/popup/__title/popup__title.css');
 @import url('./blocks/popup/__close-btn/popup__close-btn.css');
 
@@ -79,5 +80,6 @@
 
 /* Попап статуса регистрации */
 @import url('./blocks/popup/_type/_auth-status/popup_type_auth-status.css');
-@import url('./blocks/popup/__title/popup__title.css');
+@import url('./blocks/popup/__close-btn/_centered/popup__close-btn_centered.css');
+@import url('./blocks/popup/__message/popup__message.css');
 @import url('./blocks/popup/__auth-status-icon/popup__auth-status-icon.css');
