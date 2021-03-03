@@ -1,4 +1,19 @@
-function Login() {
+import { withRouter } from 'react-router-dom';
+import useForm from "../hooks/useForm";
+
+function Login(props) {
+  const {
+    handleChange,
+    values,
+  } = useForm();
+
+  const { password, email } = values;
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.onSubmit(password, email);
+  }
+
   return (
     <div className='auth-form'>
       <form
@@ -6,6 +21,7 @@ function Login() {
         method='POST'
         name='login-form'
         className='form'
+        onSubmit={handleSubmit}
         noValidate
       >
         <h2 className='form__title form__title_dark'>Вход</h2>
@@ -18,6 +34,7 @@ function Login() {
             className='form__input form__input_dark'
             placeholder='Email'
             minLength='2'
+            onChange={handleChange}
             required
           />
           <input
@@ -27,6 +44,7 @@ function Login() {
             autoComplete='password'
             className='form__input form__input_dark'
             placeholder='Пароль'
+            onChange={handleChange}
             required
           />
         </div>
@@ -41,4 +59,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default withRouter(Login);

@@ -1,6 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import useForm from "../hooks/useForm";
 
-function Register() {
+function Register(props) {
+  const {
+    handleChange,
+    values,
+  } = useForm();
+
+  const { password, email } = values;
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.onSubmit(password, email);
+  }
+
   return (
     <div className='auth-form'>
       <form
@@ -8,6 +21,7 @@ function Register() {
         method='POST'
         name='register-form'
         className='form'
+        onSubmit={handleSubmit}
         noValidate
       >
         <h2 className='form__title form__title_dark'>Регистрация</h2>
@@ -20,6 +34,7 @@ function Register() {
             className='form__input form__input_dark'
             placeholder='Email'
             minLength='2'
+            onChange={handleChange}
             required
           />
           <input
@@ -29,6 +44,7 @@ function Register() {
             autoComplete='password'
             className='form__input form__input_dark'
             placeholder='Пароль'
+            onChange={handleChange}
             required
           />
         </div>
@@ -44,4 +60,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default withRouter(Register);

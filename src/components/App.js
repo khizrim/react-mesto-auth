@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import api from '../utils/api';
+import * as auth from '../utils/auth';
 import CurrentUserContext from '../contexts/CurrentUserContext';
+import ProtectedRoute from './ProtectedRoute';
 import Header from './Header';
+import Login from './Login';
+import Register from './Register';
 import Main from './Main';
 import Footer from './Footer';
 import EditAvatarPopup from './EditAvatarPopup';
@@ -10,11 +14,10 @@ import EditProfilePopup from './EditProfilePopup';
 import AddPlacePopup from './AddPlacePopup';
 import ImagePopup from './ImagePopup';
 import ConfirmationPopup from './ConfirmationPopup';
-import Register from './Register';
-import Login from './Login';
-import ProtectedRoute from './ProtectedRoute';
+import InfoTooltip from './InfoTooltip';
 
 function App() {
+  const history = useHistory();
   const [currentUser, setCurrentUser] = useState({});
   const [selectedCard, setSelectedCard] = useState({});
   const [cards, setCards] = useState([]);
@@ -23,7 +26,12 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupState] = useState(false);
   const [isImageViewerPopupOpen, setImageViewerPopupState] = useState(false);
   const [isConfirmationPopupOpen, setConfirmationPopupState] = useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  const [isRegisteredSuccessefully, setIsRegisteredSuccessefully] = useState(false);
   const [noScroll, setNoScroll] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isChecking, setIsChecking] = useState(true);
+  const [userEmail, setUserEmail] = useState('');
   const [buttonState, setButtonState] = useState('');
 
   useEffect(() => {
@@ -68,6 +76,28 @@ function App() {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        setIsChecking(true);
+        const userToken = localStorage.getItem('token');
+        if (userToken) {
+          const res = await auth.checkToken(userToken);
+          if (res) {
+            setIsLoggedIn(true);
+            history.push('/');
+            setUserEmail(res.data.email);
+          }
+        }
+      } catch (err) {
+        setIsLoggedIn(false);
+        history.push('/sign-in');
+      } finally {
+        setIsChecking(false);
+      }
+    })();
+  }, [history]);
 
   function handleEditAvatarClick() {
     setEditAvatarPopupState(true);
@@ -175,30 +205,87 @@ function App() {
     }
   }
 
+  function handleInfoTooltipClose() {
+    if(isRegisteredSuccessefully) {
+      closeAllPopups();
+      history.push('/');
+    } else {
+      closeAllPopups();
+    }
+  }
+
+  function handleRegister(password, email) {
+    auth.register(password, email)
+      .then((res) => {
+        if(res) {
+          setIsInfoTooltipOpen(true);
+          setIsRegisteredSuccessefully(true);
+        } else {
+          setIsInfoTooltipOpen(true);
+          setIsRegisteredSuccessefully(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  function handleLogin(password, email) {
+    auth.login(password, email)
+      .then((res) => {
+        setIsLoggedIn(true);
+        setUserEmail(email);
+        localStorage.setItem('token', res.token);
+        history.push('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  function handleSignOut(e) {
+    e.preventDefault();
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+    history.push('/sign-in');
+  }
+
   function closeAllPopups() {
     setEditAvatarPopupState(false);
     setEditProfilePopupState(false);
     setAddPlacePopupState(false);
     setConfirmationPopupState(false);
     setImageViewerPopupState(false);
+    setIsInfoTooltipOpen(false);
     setSelectedCard({});
   }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className={`page ${noScroll ? 'page_no-scroll' : ''}`}>
-        <div className="page__container">
-          <Header userEmail={''} isLoggedIn={''} onSignOut={''} />
+        <div className='page__container'>
+          <Header userEmail={userEmail} isLoggedIn={isLoggedIn} onSignOut={handleSignOut} />
           <Switch>
-            <Route path="/sign-up">
-              <Register />
+            <Route path='/sign-up'>
+              <Register
+                onSubmit={handleRegister}
+                onSignIn={handleLogin}
+              />
+              <InfoTooltip
+                status={isRegisteredSuccessefully}
+                isOpen={isInfoTooltipOpen}
+                onClose={handleInfoTooltipClose}
+              />
             </Route>
-            <Route path="/sign-in">
-              <Login />
+            <Route path='/sign-in'>
+              <Login
+                onSubmit={handleLogin}
+              />
             </Route>
             <ProtectedRoute
-              path="/"
-              isLoggedIn={false}
+              path='/'
+              isLoggedIn={isLoggedIn}
+              isChecking={isChecking}
               component={Main}
               cards={cards}
               onEditAvatar={handleEditAvatarClick}
@@ -209,7 +296,7 @@ function App() {
               onCardDelete={handleDeleteClick}
             />
           </Switch>
-          <Route exact path="/">
+          <Route exact path='/'>
             <Footer />
             <EditAvatarPopup
               isOpen={isEditAvatarPopupOpen}
@@ -231,7 +318,7 @@ function App() {
             />
             <ImagePopup
               isOpen={isImageViewerPopupOpen}
-              name="image-vwr"
+              name='image-vwr'
               card={selectedCard}
               onClose={closeAllPopups}
             />
