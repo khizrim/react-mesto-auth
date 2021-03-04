@@ -27,7 +27,9 @@ function App() {
   const [isImageViewerPopupOpen, setImageViewerPopupState] = useState(false);
   const [isConfirmationPopupOpen, setConfirmationPopupState] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
-  const [isRegisteredSuccessefully, setIsRegisteredSuccessefully] = useState(false);
+  const [isRegisteredSuccessefully, setIsRegisteredSuccessefully] = useState(
+    false
+  );
   const [noScroll, setNoScroll] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isChecking, setIsChecking] = useState(true);
@@ -205,19 +207,12 @@ function App() {
     }
   }
 
-  function handleInfoTooltipClose() {
-    if(isRegisteredSuccessefully) {
-      closeAllPopups();
-      history.push('/');
-    } else {
-      closeAllPopups();
-    }
-  }
-
   function handleRegister(password, email) {
-    auth.register(password, email)
+    auth
+      .register(password, email)
       .then((res) => {
-        if(res) {
+        if (res) {
+          history.push('/sign-in');
           setIsInfoTooltipOpen(true);
           setIsRegisteredSuccessefully(true);
         } else {
@@ -227,11 +222,12 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }
 
   function handleLogin(password, email) {
-    auth.login(password, email)
+    auth
+      .login(password, email)
       .then((res) => {
         setIsLoggedIn(true);
         setUserEmail(email);
@@ -240,7 +236,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }
 
   function handleSignOut(e) {
@@ -263,27 +259,21 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className={`page ${noScroll ? 'page_no-scroll' : ''}`}>
-        <div className='page__container'>
-          <Header userEmail={userEmail} isLoggedIn={isLoggedIn} onSignOut={handleSignOut} />
+        <div className="page__container">
+          <Header
+            userEmail={userEmail}
+            isLoggedIn={isLoggedIn}
+            onSignOut={handleSignOut}
+          />
           <Switch>
-            <Route path='/sign-up'>
-              <Register
-                onSubmit={handleRegister}
-                onSignIn={handleLogin}
-              />
-              <InfoTooltip
-                status={isRegisteredSuccessefully}
-                isOpen={isInfoTooltipOpen}
-                onClose={handleInfoTooltipClose}
-              />
+            <Route path="/sign-up">
+              <Register onSubmit={handleRegister} onSignIn={handleLogin} />
             </Route>
-            <Route path='/sign-in'>
-              <Login
-                onSubmit={handleLogin}
-              />
+            <Route path="/sign-in">
+              <Login onSubmit={handleLogin} />
             </Route>
             <ProtectedRoute
-              path='/'
+              path="/"
               isLoggedIn={isLoggedIn}
               isChecking={isChecking}
               component={Main}
@@ -296,8 +286,14 @@ function App() {
               onCardDelete={handleDeleteClick}
             />
           </Switch>
-          <Route exact path='/'>
+          <Route exact path="/">
             <Footer />
+          </Route>
+          <InfoTooltip
+              status={isRegisteredSuccessefully}
+              isOpen={isInfoTooltipOpen}
+              onClose={closeAllPopups}
+            />
             <EditAvatarPopup
               isOpen={isEditAvatarPopupOpen}
               submitBtn={buttonState}
@@ -318,7 +314,7 @@ function App() {
             />
             <ImagePopup
               isOpen={isImageViewerPopupOpen}
-              name='image-vwr'
+              name="image-vwr"
               card={selectedCard}
               onClose={closeAllPopups}
             />
@@ -329,7 +325,6 @@ function App() {
               onCardDelete={handleCardDelete}
               onClose={closeAllPopups}
             />
-          </Route>
         </div>
       </div>
     </CurrentUserContext.Provider>
