@@ -1,5 +1,6 @@
 .auth-form {
   display: flex;
+  width: 100%;
   min-width: 260px;
   max-width: 358px;
   height: 50vh;
