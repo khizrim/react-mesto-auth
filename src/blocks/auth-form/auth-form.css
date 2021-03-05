@@ -1,9 +1,10 @@
 .auth-form {
   display: flex;
+  flex-shrink: 0;
+  flex-grow: 1;
   width: 100%;
   min-width: 260px;
   max-width: 358px;
   height: 50vh;
-  max-height: 455px;
   margin: 60px auto 0;
 }

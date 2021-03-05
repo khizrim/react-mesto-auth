@@ -286,45 +286,43 @@ function App() {
               onCardDelete={handleDeleteClick}
             />
           </Switch>
-          <Route exact path="/">
-            <Footer />
-          </Route>
+          <Footer />
           <InfoTooltip
-              status={isRegisteredSuccessefully}
-              isOpen={isInfoTooltipOpen}
-              onClose={closeAllPopups}
-            />
-            <EditAvatarPopup
-              isOpen={isEditAvatarPopupOpen}
-              submitBtn={buttonState}
-              onUpdateAvatar={handleUpdateAvatar}
-              onClose={closeAllPopups}
-            />
-            <EditProfilePopup
-              isOpen={isEditProfilePopupOpen}
-              submitBtn={buttonState}
-              onUpdateUser={handleUpdateUser}
-              onClose={closeAllPopups}
-            />
-            <AddPlacePopup
-              isOpen={isAddPlacePopupOpen}
-              submitBtn={buttonState}
-              onAddPlace={handleAddPlace}
-              onClose={closeAllPopups}
-            />
-            <ImagePopup
-              isOpen={isImageViewerPopupOpen}
-              name="image-vwr"
-              card={selectedCard}
-              onClose={closeAllPopups}
-            />
-            <ConfirmationPopup
-              isOpen={isConfirmationPopupOpen}
-              card={selectedCard}
-              submitBtn={buttonState}
-              onCardDelete={handleCardDelete}
-              onClose={closeAllPopups}
-            />
+            status={isRegisteredSuccessefully}
+            isOpen={isInfoTooltipOpen}
+            onClose={closeAllPopups}
+          />
+          <EditAvatarPopup
+            isOpen={isEditAvatarPopupOpen}
+            submitBtn={buttonState}
+            onUpdateAvatar={handleUpdateAvatar}
+            onClose={closeAllPopups}
+          />
+          <EditProfilePopup
+            isOpen={isEditProfilePopupOpen}
+            submitBtn={buttonState}
+            onUpdateUser={handleUpdateUser}
+            onClose={closeAllPopups}
+          />
+          <AddPlacePopup
+            isOpen={isAddPlacePopupOpen}
+            submitBtn={buttonState}
+            onAddPlace={handleAddPlace}
+            onClose={closeAllPopups}
+          />
+          <ImagePopup
+            isOpen={isImageViewerPopupOpen}
+            name="image-vwr"
+            card={selectedCard}
+            onClose={closeAllPopups}
+          />
+          <ConfirmationPopup
+            isOpen={isConfirmationPopupOpen}
+            card={selectedCard}
+            submitBtn={buttonState}
+            onCardDelete={handleCardDelete}
+            onClose={closeAllPopups}
+          />
         </div>
       </div>
     </CurrentUserContext.Provider>
