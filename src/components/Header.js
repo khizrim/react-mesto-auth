@@ -5,24 +5,32 @@ import { useState } from 'react';
 function Header(props) {
   const [isBurgerActive, setIsBurgerActive] = useState(false);
 
-  function handleBurgerClick () {
+  function handleBurgerClick() {
     setIsBurgerActive(!isBurgerActive);
   }
 
   return (
     <header className="header">
-      <div className="header__content">
+      <div className={`header__content ${props.isLoggedIn ? 'header__content_burger' : ''}`}>
         <a href="/" className="header__link" target="_self">
           <img src={logo} alt="Логотип" className="header__logo" />
         </a>
-        <button
-          type="button"
-          aria-label="Закрыть"
-          className={`header__burger-btn ${isBurgerActive ? 'header__burger-btn_active' : ''}`}
-          onClick={handleBurgerClick}
-        />
+        {props.isLoggedIn && (
+          <button
+            type="button"
+            aria-label="Закрыть"
+            className={`header__burger-btn ${
+              isBurgerActive ? 'header__burger-btn_active' : ''
+            }`}
+            onClick={handleBurgerClick}
+          />
+        )}
         <nav className="header__menu">
-          <ul className={`header__menu-links ${isBurgerActive ? 'header__menu-links_visible' : ''}`}>
+          <ul
+            className={`header__menu-links ${props.isLoggedIn ? 'header__menu-links_burger' : ''} ${
+              isBurgerActive ? 'header__menu-links_visible' : ''
+            }`}
+          >
             <Switch>
               <Route path="/sign-up">
                 <li className="header__menu-item">
