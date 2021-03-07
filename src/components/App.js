@@ -27,9 +27,9 @@ function App() {
   const [isImageViewerPopupOpen, setImageViewerPopupState] = useState(false);
   const [isConfirmationPopupOpen, setConfirmationPopupState] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
-  const [isRegisteredSuccessefully, setIsRegisteredSuccessefully] = useState(
-    false
-  );
+  const [isBurgerActive, setIsBurgerActive] = useState(false);
+  const [isRegisteredSuccessefully, setIsRegisteredSuccessefully] = useState(false);
+  const [loginError, setLoginError] = useState(false);
   const [noScroll, setNoScroll] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isChecking, setIsChecking] = useState(true);
@@ -206,6 +206,7 @@ function App() {
   }
 
   function handleRegister(password, email) {
+    handleLoading(true, 'Регистрация...');
     auth
       .register(password, email)
       .then((res) => {
@@ -220,10 +221,14 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally (() => {
+        handleLoading(false)
+      })
   }
 
   function handleLogin(password, email) {
+    handleLoading(true, 'Вход...');
     auth
       .login(password, email)
       .then((res) => {
@@ -233,8 +238,12 @@ function App() {
         history.push('/');
       })
       .catch((err) => {
+        setLoginError(true);
         console.log(err);
-      });
+      })
+      .finally (() => {
+        handleLoading(false)
+      })
   }
 
   function handleSignOut(e) {
@@ -255,8 +264,6 @@ function App() {
     setSelectedCard({});
   }
 
-  const [isBurgerActive, setIsBurgerActive] = useState(false);
-
   function handleBurgerClick() {
     setIsBurgerActive(!isBurgerActive);
   }
@@ -274,10 +281,10 @@ function App() {
           />
           <Switch>
             <Route path="/sign-up">
-              <Register onSubmit={handleRegister} onSignIn={handleLogin} />
+              <Register onSubmit={handleRegister} submitBtn={buttonState || 'Зарегистрироваться'} />
             </Route>
             <Route path="/sign-in">
-              <Login onSubmit={handleLogin} />
+              <Login onSubmit={handleLogin} loginError={loginError} setLoginError={setLoginError} submitBtn={buttonState || 'Войти'} />
             </Route>
             <ProtectedRoute
               path="/"

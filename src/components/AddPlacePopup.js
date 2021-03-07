@@ -43,7 +43,7 @@ function AddPlacePopup(props) {
           required
         />
         {errors.name && (
-          <span className='form__input-error form__input-error_active'>
+          <span className='form__input-error'>
             {errors.name}
           </span>
         )}
@@ -59,7 +59,7 @@ function AddPlacePopup(props) {
           required
         />
         {errors.link && (
-          <span className='form__input-error form__input-error_active'>
+          <span className='form__input-error'>
             {errors.link}
           </span>
         )}

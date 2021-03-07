@@ -70,13 +70,14 @@
 @import url('./blocks/form/__title/_dark/form__title_dark.css');
 @import url('./blocks/form/__inputs-container/form__inputs-container.css');
 @import url('./blocks/form/__input/form__input.css');
+@import url('./blocks/form/__divider/form__divider.css');
 @import url('./blocks/form/__input/_dark/form__input_dark.css');
 @import url('./blocks/form/__input/_type/form__input_type_error.css');
 @import url('./blocks/form/__input-error/form__input-error.css');
-@import url('./blocks/form/__input-error/_active/form__input-error_active.css');
 @import url('./blocks/form/__submit-btn/form__submit-btn.css');
 @import url('./blocks/form/__submit-btn/_dark/form__submit-btn_dark.css');
 @import url('./blocks/form/__submit-btn/_disabled/form__submit-btn_disabled.css');
+@import url('./blocks/form/__submit-error/form__submit-error.css');
 @import url('./blocks/form/__caption/form__caption.css');
 
 /* Попап просмотра фотографии */
