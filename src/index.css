@@ -54,7 +54,6 @@
 @import url('./blocks/footer/__copyright/footer__copyright.css');
 
 @import url('./blocks/auth-form/auth-form.css');
-@import url('./blocks/auth-form/__divider/auth-form__divider.css');
 
 /* Cтили попапов */
 @import url('./blocks/popup/popup.css');
