@@ -41,7 +41,7 @@ function EditAvatarPopup(props) {
           required
         />
         {errors.link && (
-          <span className='form__input-error form__input-error_active'>{errors.link}</span>
+          <span className='form__input-error'>{errors.link}</span>
         )}
       </>
     </PopupWithForm>

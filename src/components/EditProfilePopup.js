@@ -53,7 +53,7 @@ function EditProfilePopup(props) {
           required
         />
         {errors.name && (
-          <span className='form__input-error form__input-error_active'>{errors.name}</span>
+          <span className='form__input-error'>{errors.name}</span>
         )}
         <input
           id='user-about'
@@ -70,7 +70,7 @@ function EditProfilePopup(props) {
           required
         />
         {errors.about && (
-          <span className='form__input-error form__input-error_active'>{errors.about}</span>
+          <span className='form__input-error'>{errors.about}</span>
         )}
         </>
     </PopupWithForm>
