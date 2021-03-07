@@ -2,7 +2,7 @@
   "name": "react-mesto-auth",
   "autor": "khizrim",
   "description": "",
-  "homepage": "/react-mesto-auth/",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

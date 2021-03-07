@@ -5,9 +5,9 @@ function Header(props) {
   return (
     <header className="header">
       <div className={`header__content ${props.isLoggedIn ? 'header__content_burger' : ''}`}>
-        <a href="/" className="header__link" target="_self">
+        <Link to="" className="header__link">
           <img src={logo} alt="Логотип" className="header__logo" />
-        </a>
+        </Link>
         {props.isLoggedIn && (
           <button
             type="button"
