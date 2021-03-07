@@ -41,7 +41,6 @@ function App() {
       isEditAvatarPopupOpen ||
       isEditProfilePopupOpen ||
       isAddPlacePopupOpen ||
-      isImageViewerPopupOpen ||
       isConfirmationPopupOpen
     ) {
       setNoScroll(true);
@@ -53,7 +52,6 @@ function App() {
     isEditAvatarPopupOpen,
     isEditProfilePopupOpen,
     isAddPlacePopupOpen,
-    isImageViewerPopupOpen,
     isConfirmationPopupOpen,
   ]);
 
