@@ -20,7 +20,7 @@
   }
 
   .header::after {
-    margin-top: 32px;
+    margin-top: 28px;
     min-width: 320px;
   }
 }

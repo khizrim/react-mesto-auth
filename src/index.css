@@ -15,6 +15,7 @@
 @import url('./blocks/header/__burger-btn/header__burger-btn.css');
 @import url('./blocks/header/__burger-btn/_active/header__burger-btn_active.css');
 @import url('./blocks/header/__menu/header__menu.css');
+@import url('./blocks/header/__menu-item/header__menu-item.css');
 @import url('./blocks/header/__user-email/header__user-email.css');
 @import url('./blocks/header/__menu-links/header__menu-links.css');
 @import url('./blocks/header/__menu-links/_burger/header__menu-links_burger.css');
@@ -53,6 +54,7 @@
 @import url('./blocks/footer/__copyright/footer__copyright.css');
 
 @import url('./blocks/auth-form/auth-form.css');
+@import url('./blocks/auth-form/__divider/auth-form__divider.css');
 
 /* Cтили попапов */
 @import url('./blocks/popup/popup.css');

@@ -242,6 +242,7 @@ function App() {
   function handleSignOut(e) {
     e.preventDefault();
     localStorage.removeItem('token');
+    setIsBurgerActive(false);
     setIsLoggedIn(false);
     history.push('/sign-in');
   }
@@ -256,6 +257,12 @@ function App() {
     setSelectedCard({});
   }
 
+  const [isBurgerActive, setIsBurgerActive] = useState(false);
+
+  function handleBurgerClick() {
+    setIsBurgerActive(!isBurgerActive);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className={`page ${noScroll ? 'page_no-scroll' : ''}`}>
@@ -263,6 +270,8 @@ function App() {
           <Header
             userEmail={userEmail}
             isLoggedIn={isLoggedIn}
+            isBurgerActive={isBurgerActive}
+            onBurgerClick={handleBurgerClick}
             onSignOut={handleSignOut}
           />
           <Switch>

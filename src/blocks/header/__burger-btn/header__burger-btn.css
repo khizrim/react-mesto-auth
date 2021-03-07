@@ -3,6 +3,7 @@
   width: 26px;
   height: 26px;
   padding: 0;
+  margin-right: 8px;
   border: none;
   background: url('../../../images/burger.svg') center no-repeat;
   cursor: pointer;

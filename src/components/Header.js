@@ -1,14 +1,7 @@
 import logo from '../images/logo.svg';
 import { Switch, Route, Link } from 'react-router-dom';
-import { useState } from 'react';
 
 function Header(props) {
-  const [isBurgerActive, setIsBurgerActive] = useState(false);
-
-  function handleBurgerClick() {
-    setIsBurgerActive(!isBurgerActive);
-  }
-
   return (
     <header className="header">
       <div className={`header__content ${props.isLoggedIn ? 'header__content_burger' : ''}`}>
@@ -20,15 +13,15 @@ function Header(props) {
             type="button"
             aria-label="Закрыть"
             className={`header__burger-btn ${
-              isBurgerActive ? 'header__burger-btn_active' : ''
+              props.isBurgerActive ? 'header__burger-btn_active' : ''
             }`}
-            onClick={handleBurgerClick}
+            onClick={props.onBurgerClick}
           />
         )}
         <nav className="header__menu">
           <ul
             className={`header__menu-links ${props.isLoggedIn ? 'header__menu-links_burger' : ''} ${
-              isBurgerActive ? 'header__menu-links_visible' : ''
+              props.isBurgerActive ? 'header__menu-links_visible' : ''
             }`}
           >
             <Switch>
