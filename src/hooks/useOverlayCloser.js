@@ -1,13 +1,23 @@
+import { useEffect } from 'react';
+
 function useOverlayCloser(props) {
-  const { onClose } = props;
+  const { isOpen, onClose } = props;
 
-  function handleOverlayClose(e) {
-    if (e.target.classList.contains('popup_opened')) {
-      onClose();
-    }
-  };
+  useEffect(() => {
+    if (!isOpen) return;
 
-  return handleOverlayClose;
+    function handleOverlayClose (e) {
+      if (e.target.classList.contains('popup_opened')) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('click', handleOverlayClose);
+
+    return () => {
+      document.removeEventListener('click', handleOverlayClose);
+    };
+  }, [isOpen, onClose]);
 }
 
 export default useOverlayCloser;

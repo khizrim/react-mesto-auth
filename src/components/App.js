@@ -30,30 +30,12 @@ function App() {
   const [isBurgerActive, setIsBurgerActive] = useState(false);
   const [isRegisteredSuccessefully, setIsRegisteredSuccessefully] = useState(false);
   const [loginError, setLoginError] = useState(false);
-  const [noScroll, setNoScroll] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isChecking, setIsChecking] = useState(true);
   const [userEmail, setUserEmail] = useState('');
   const [buttonState, setButtonState] = useState('');
 
-  useEffect(() => {
-    if (
-      isEditAvatarPopupOpen ||
-      isEditProfilePopupOpen ||
-      isAddPlacePopupOpen ||
-      isConfirmationPopupOpen
-    ) {
-      setNoScroll(true);
-    } else {
-      setNoScroll(false);
-    }
-  }, [
-    noScroll,
-    isEditAvatarPopupOpen,
-    isEditProfilePopupOpen,
-    isAddPlacePopupOpen,
-    isConfirmationPopupOpen,
-  ]);
+  const noScroll = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || isConfirmationPopupOpen;
 
   useEffect(() => {
     (async () => {
@@ -303,6 +285,8 @@ function App() {
           <Footer />
           <InfoTooltip
             status={isRegisteredSuccessefully}
+            successMessage={'Вы успешно зарегистрировались!'}
+            failMessage={'Что-то пошло не так! Попробуйте ещё раз.'}
             isOpen={isInfoTooltipOpen}
             onClose={closeAllPopups}
           />
