@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 
 function useEscCloser(props) {
   const { isOpen, onClose } = props;
-
   useEffect(() => {
     if (!isOpen) return;
 

@@ -9,21 +9,16 @@ function useForm() {
     const target = e.target;
     const name = target.name;
     const value = target.value;
+    const error = target.validationMessage;
 
     setValues({
       ...values,
       [name]: value,
     });
-  }
-
-  function validateInput(e) {
-    const target = e.target;
-    const name = target.name;
-    const value = target.validationMessage;
 
     setErrors({
       ...errors,
-      [name]: value,
+      [name]: error,
     });
   }
 
@@ -40,14 +35,13 @@ function useForm() {
 
   return {
     handleChange,
-    validateInput,
     validateForm,
     setValues,
+    setFormValidity,
     reset,
     values,
     errors,
-    formValidity,
-    setFormValidity
+    formValidity
   }
 }
 

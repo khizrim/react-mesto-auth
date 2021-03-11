@@ -2,7 +2,8 @@ import useEscCloser from '../hooks/useEscCloser';
 import useOverlayCloser from '../hooks/useOverlayCloser';
 
 function PopupWithForm(props) {
-  useEscCloser(props);
+  const { isOpen, onClose } = props;
+  useEscCloser(isOpen, onClose);
   const handleOverlayClose = useOverlayCloser(props)
 
   return (

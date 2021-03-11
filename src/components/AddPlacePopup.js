@@ -4,7 +4,6 @@ import PopupWithForm from './PopupWithForm';
 function AddPlacePopup(props) {
   const {
     handleChange,
-    validateInput,
     validateForm,
     reset,
     values,
@@ -19,8 +18,8 @@ function AddPlacePopup(props) {
 
   return (
     <PopupWithForm
-      name='add-card'
-      title='Новое место'
+      name="add-card"
+      title="Новое место"
       submitBtn={props.submitBtn || 'Создать'}
       isOpen={props.isOpen}
       isValid={formValidity}
@@ -28,42 +27,30 @@ function AddPlacePopup(props) {
       onSubmit={handleSubmit}
       onClose={props.onClose}
     >
-      <>
-        <input
-          id='card-title'
-          type='text'
-          name='name'
-          placeholder='Название'
-          value={values.name || ''}
-          onInput={validateInput}
-          onChange={handleChange}
-          className={`form__input ${errors.name ? 'form__input_type_error' : ''}`}
-          minLength='2'
-          maxLength='30'
-          required
-        />
-        {errors.name && (
-          <span className='form__input-error'>
-            {errors.name}
-          </span>
-        )}
-        <input
-          id='card-url'
-          type='url'
-          name='link'
-          placeholder='Ссылка на картинку'
-          value={values.link || ''}
-          onInput={validateInput}
-          onChange={handleChange}
-          className={`form__input ${errors.link ? 'form__input_type_error' : ''}`}
-          required
-        />
-        {errors.link && (
-          <span className='form__input-error'>
-            {errors.link}
-          </span>
-        )}
-      </>
+      <input
+        id="card-title"
+        type="text"
+        name="name"
+        placeholder="Название"
+        value={values.name || ''}
+        onChange={handleChange}
+        className={`form__input ${errors.name ? 'form__input_type_error' : ''}`}
+        minLength="2"
+        maxLength="30"
+        required
+      />
+      {errors.name && <span className="form__input-error">{errors.name}</span>}
+      <input
+        id="card-url"
+        type="url"
+        name="link"
+        placeholder="Ссылка на картинку"
+        value={values.link || ''}
+        onChange={handleChange}
+        className={`form__input ${errors.link ? 'form__input_type_error' : ''}`}
+        required
+      />
+      {errors.link && <span className="form__input-error">{errors.link}</span>}
     </PopupWithForm>
   );
 }

@@ -5,7 +5,6 @@ function Register(props) {
   const {
     handleChange,
     validateForm,
-    validateInput,
     values,
     errors,
     formValidity,
@@ -42,7 +41,6 @@ function Register(props) {
             placeholder="Email"
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             minLength="2"
-            onInput={validateInput}
             onChange={handleChange}
             required
           />
@@ -61,7 +59,6 @@ function Register(props) {
             }`}
             placeholder="Пароль"
             minLength="8"
-            onInput={validateInput}
             onChange={handleChange}
             required
           />
